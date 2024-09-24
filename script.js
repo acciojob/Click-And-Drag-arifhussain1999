@@ -8,11 +8,12 @@ container.addEventListener('mousedown', (e) => {
   startX = e.pageX;
 });
 
-container.addEventListener('mousemove', (e) => {
-  if (!isDown) return; // Only run if the mouse is down
-  const distance = e.pageX - startX;
-  container.scrollLeft -= distance; // Scroll the container
-  startX = e.pageX; // Update startX for the next movement
+items.addEventListener('mousemove', (e) => {
+  if (isDown) {
+    const distance = startX - e.pageX; // Calculate how far the mouse moved
+    items.scrollLeft += distance; // Update scroll position
+    startX = e.pageX; // Update startX for the next calculation
+  }
 });
 
 container.addEventListener('mouseup', () => {
